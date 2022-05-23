@@ -2,139 +2,91 @@ package com.diegoformentin.diego.loja.maven.model.dao;
 
 import java.util.List;
 import com.diegoformentin.diego.loja.maven.model.bo.Bairro;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaQuery;
 
 public class BairroDAO implements InterfaceDAO<Bairro>{
+    
+    private static BairroDAO instance;
+    protected EntityManager em;
+    
+    public static BairroDAO getInstance() {
+        if (instance == null) {
+            instance = new BairroDAO();
+        }
+        return instance;
+    }
+    
+    public BairroDAO() {
+        em = getEntityManager();
+    }
+    
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("bancoloja");
+        if (em == null) {
+            em = factory.createEntityManager();
+        }
+        
+        return em;
+    }
+    
     @Override
     public void create(Bairro objeto) {
-        //Abrindo conexão
-        Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO bairro (descricaoBairro) VALUES(?)";
-        PreparedStatement pstm = null;
-        
-        try{
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setString(1, objeto.getDescricaoBairro());
-            pstm.executeUpdate();
-        } catch(Exception ex){
-            ex.printStackTrace();
+        try {
+            em.getTransaction().begin();
+            em.persist(objeto);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
         }
-        //fechar a conexão
-        ConnectionFactory.closeConnection(conexao, pstm);
     }
 
     @Override
     public List<Bairro> retrieve() {
-        String sqlExecutar     =   " SELECT idbairro, "
-                                 + " descricaoBairro  "
-                                 + " FROM bairro";
+        List<Bairro> bairros;
+        CriteriaQuery<Bairro> criteria = em.getCriteriaBuilder().createQuery(Bairro.class);
         
-        Connection conexao     = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet rst          = null;
-        List<Bairro> bairros = new ArrayList<>();
-        
-        try{
-            pstm = conexao.prepareStatement(sqlExecutar);
-            rst = pstm.executeQuery();            
-            
-            while(rst.next()){
-                Bairro bairro = new Bairro();
-                bairro.setIdBairro(rst.getInt("idbairro"));
-                bairro.setDescricaoBairro(rst.getString("descricaoBairro"));
-                bairros.add(bairro);
-            }
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return bairros;       
-        } catch(Exception ex){
-            ex.printStackTrace();
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return null;
-        }
+        criteria.select(criteria.from(Bairro.class));
+        bairros = em.createQuery(criteria).getResultList();
+        return bairros;
     }
+    
     @Override
     public Bairro retrieve(int codigo) {
-        String sqlExecutar     =   " SELECT idbairro, "
-                                 + " descricaoBairro  "
-                                 + " FROM bairro "
-                                 + " WHERE bairro.idbairro = ?";
-        
-        Connection conexao     = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet rst          = null;
-        
-        try{
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setInt(1, codigo);
-            
-            rst = pstm.executeQuery();  
-            Bairro bairro = new Bairro();
-            while(rst.next()){
-                bairro.setIdBairro(rst.getInt("idbairro"));
-                bairro.setDescricaoBairro(rst.getString("descricaoBairro"));
-            }
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return bairro; 
-        } catch(Exception ex){
-            ex.printStackTrace();
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return null;
-        }   
+        return em.find(Bairro.class, codigo);
     }
 
     @Override
     public Bairro retrieve(String descricao) {
-        String sqlExecutar     =   " SELECT idbairro, "
-                                 + " descricaoBairro  "
-                                 + " FROM bairro "
-                                 + " WHERE bairro.descricaoBairro = ?";
-        Connection conexao     = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet rst          = null;
-        
-        try{
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setString(1, descricao);
-            rst = pstm.executeQuery();  
-            Bairro bairro = new Bairro();
-            
-            while(rst.next()){
-                bairro.setIdBairro(rst.getInt("idbairro"));
-                bairro.setDescricaoBairro(rst.getString("descricaoBairro"));
-            }
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-
-            return bairro; 
-        } catch(Exception ex){
-            ex.printStackTrace();
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return null;
-        }  
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void update(Bairro objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = " UPDATE bairro "
-                           + " SET descricaoBairro   = ? "
-                           + " WHERE bairro.idbairro = ? ";
-        PreparedStatement pstm = null;
-        try{
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setString(1, objeto.getDescricaoBairro());
-            pstm.setInt(2, objeto.getIdBairro());
-            pstm.executeUpdate();
-        }catch(Exception ex){
-            ex.printStackTrace();
+        try {
+            em.getTransaction().begin();
+            em.persist(objeto);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
         }
-        ConnectionFactory.closeConnection(conexao, pstm);
     }
 
     @Override
     public void delete(Bairro objeto) {
-    }
-    
+        try {
+            em.getTransaction().begin();
+            
+            objeto = em.find(Bairro.class, objeto.getIdBairro());
+            
+            em.remove(this);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } 
 }
