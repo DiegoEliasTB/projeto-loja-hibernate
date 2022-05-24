@@ -8,37 +8,46 @@ import java.util.List;
 import com.diegoformentin.diego.loja.maven.model.bo.Cliente;
 import com.diegoformentin.diego.loja.maven.model.bo.Endereco;
 import com.diegoformentin.diego.loja.maven.service.EnderecoService;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaQuery;
 
 public class ClienteDAO implements InterfaceDAO<Cliente> {
 
+    private static ClienteDAO instance;
+    protected EntityManager em;
+    
+    public static ClienteDAO getInstance() {
+        if (instance == null) {
+            instance = new ClienteDAO();
+        }
+        return instance;
+    }
+    
+    public ClienteDAO() {
+        em = getEntityManager();
+    }
+    
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("bancoloja");
+        if (em == null) {
+            em = factory.createEntityManager();
+        }
+        
+        return em;
+    }
+    
     @Override
     public void create(Cliente objeto) {
-        //Abrindo conexão
-        Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO cliente (nomeCliente, dtNasCliente, cpfCliente, rgCliente, foneCliente, fone2Cliente, emailCliente, compleEnderecoCliente, endereco_idcep) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ? )";
-        PreparedStatement pstm = null;
-        
-        try{
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setString(1, objeto.getNome());
-            
-            pstm.setString(2, objeto.getDtNasc().toString());
-            
-            pstm.setString(3, objeto.getCpfCliente());
-            pstm.setString(4, objeto.getRgCliente());
-            pstm.setString(5, objeto.getFoneCliente());
-            pstm.setString(6, objeto.getFone2Cliente());
-            pstm.setString(7, objeto.getEmail());
-            pstm.setString(8, objeto.getCompleEndereco());                
-            
-            pstm.setInt(9, objeto.getEndereco().getIdCep());
-            
-            pstm.executeUpdate();
-        } catch(Exception ex){
-            ex.printStackTrace();
+       try {
+            em.getTransaction().begin();
+            em.persist(objeto);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
         }
-        //fechar a conexão
-        ConnectionFactory.closeConnection(conexao, pstm);
     }
     
     public int buscaTotal() {
@@ -74,67 +83,17 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 
     @Override
     public List<Cliente> retrieve() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Cliente> clientes;
+        CriteriaQuery<Cliente> criteria = em.getCriteriaBuilder().createQuery(Cliente.class);
+        
+        criteria.select(criteria.from(Cliente.class));
+        clientes = em.createQuery(criteria).getResultList();
+        return clientes;
     }
 
     @Override
     public Cliente retrieve(int codigo) {
-        String sqlExecutar     =   " SELECT idcliente, "
-                                 + " nomeCliente, "
-                                 + " dtNasCliente, "
-                                 + " cpfCliente, "
-                                 + " rgCliente, "
-                                 + " foneCliente, "
-                                 + " fone2Cliente, "
-                                 + " emailCliente, "
-                                 + " compleEnderecoCliente, "
-                                 + " endereco_idcep "
-                                 + " FROM cliente "
-                                 + " WHERE cliente.idcliente = ?";
-        Connection conexao     = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet rst          = null;
-        
-        try{
-            pstm = conexao.prepareStatement(sqlExecutar);
-            pstm.setInt(1, codigo);
-            rst = pstm.executeQuery();  
-            Cliente cliente = new Cliente();
-            while(rst.next()){
-                cliente.setIdCliente(rst.getInt("idcliente"));
-                cliente.setNome(rst.getString("nomeCliente"));
-                
-                System.out.println("Data foda: " + rst.getString("dtNasCliente"));
-               
-                
-                int dataAno = Integer.valueOf(rst.getString("dtNasCliente").substring(0, 4));
-                int dataMes = Integer.valueOf(rst.getString("dtNasCliente").substring(5, 7));
-                int dataDia = Integer.valueOf(rst.getString("dtNasCliente").substring(8, 10));
-                System.out.println("Data dia: " + dataAno);
-                System.out.println("Data mes: " + dataMes);
-                System.out.println("Data ano: " + dataDia);
-                
-                System.out.println("Data completa: " + LocalDate.of(dataAno, dataMes, dataDia));
-                
-                cliente.setDtNasc(LocalDate.of(dataAno, dataMes, dataDia));
-                cliente.setCpfCliente(rst.getString("cpfCliente"));
-                cliente.setRgCliente(rst.getString("rgCliente"));
-                cliente.setFoneCliente(rst.getString("foneCliente"));
-                cliente.setFone2Cliente(rst.getString("fone2Cliente"));
-                cliente.setFone2Cliente(rst.getString("emailCliente"));
-                cliente.setFone2Cliente(rst.getString("compleEnderecoCliente"));
-                
-                EnderecoService enderecoService = new EnderecoService();
-                Endereco cep = enderecoService.buscar(rst.getString("endereco_idcep")); 
-                cliente.setEndereco(cep);
-            }
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return cliente; 
-        } catch(Exception ex){
-            ex.printStackTrace();
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return null;
-        }
+        return em.find(Cliente.class, codigo);
     }
 
     @Override
@@ -144,12 +103,28 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 
     @Override
     public void update(Cliente objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            em.getTransaction().begin();
+            em.persist(objeto);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
     }
 
     @Override
     public void delete(Cliente objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            em.getTransaction().begin();
+            
+            objeto = em.find(Cliente.class, objeto.getIdCliente());
+            
+            em.refresh(this);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }

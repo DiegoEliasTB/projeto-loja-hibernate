@@ -54,6 +54,7 @@ public class ControllerCadCliente implements ActionListener {
             cliente.setFoneCliente(this.telaCadCliente.getjFTFFone1().getText());
             cliente.setFone2Cliente(this.telaCadCliente.getjFTFFone2().getText());
             cliente.setEmail(this.telaCadCliente.getjFTFEmail().getText());
+            cliente.setCompleEndereco("Vazio");
             
             int enderecoId = Integer.parseInt(this.telaCadCliente.getjFTFCep().getText());
             

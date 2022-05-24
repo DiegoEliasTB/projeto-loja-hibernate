@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +24,7 @@ public class Cliente extends Pessoa implements Serializable {
     
     
     //@Temporal(TemporalType.DATE)
-    @Column
+    @Column(name = "dtNasCliente")
     private LocalDate dtNasc;
     
     @Column
@@ -35,13 +38,18 @@ public class Cliente extends Pessoa implements Serializable {
     
     @Column
     private String fone2Cliente;
+    
+    //@Column(name = "endereco_idcep")
+    //@OneToOne (fetch = FetchType.LAZY) //@JoinColumn(name = "endereco")
+    //private Endereco endereco_idcep;
 
     public Cliente() {
     }
 
-    public Cliente(int idClinete,LocalDate dtNasc, String cpfCliente, String rgCliente, String foneCliente, String fone2Cliente, String nome, String email, String compleEndereco, Endereco endereco) {
+    public Cliente(int idClinete, LocalDate dtNasc, String cpfCliente, String rgCliente, String foneCliente, String fone2Cliente, String nome, String email, String compleEndereco, Endereco endereco) {
         super(nome, email, compleEndereco, endereco);
         this.idCliente = idClinete;
+        //this.endereco_idcep = endereco_idcep;
         this.dtNasc = dtNasc;
         this.cpfCliente = cpfCliente;
         this.rgCliente = rgCliente;
@@ -56,6 +64,14 @@ public class Cliente extends Pessoa implements Serializable {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }  
+    
+//    public Endereco getEndereco_idcep() {
+//        return endereco_idcep;
+//    }
+//
+//    public void setEndereco_idcep(Endereco endereco_idcep) {
+//        this.endereco_idcep = endereco_idcep;
+//    }
     
     public LocalDate getDtNasc() {
         return dtNasc;
