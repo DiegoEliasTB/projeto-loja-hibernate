@@ -4,8 +4,6 @@ import java.util.List;
 import com.diegoformentin.diego.loja.maven.model.bo.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
 public class VendasDAO implements InterfaceDAO<Venda>{
 @Override
