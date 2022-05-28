@@ -1,4 +1,4 @@
-# Projeto Loja JPA + Hibernate
+# Projeto Loja com Hibernate
 #### Trabalho desenvolvido na matéria de práticas de desenvolvimento de sistemas II - IFSC
 
 ##### Tecnologias utilizadas
