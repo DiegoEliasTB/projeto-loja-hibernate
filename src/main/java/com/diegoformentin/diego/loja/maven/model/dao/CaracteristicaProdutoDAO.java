@@ -43,8 +43,8 @@ public class CaracteristicaProdutoDAO {
                 final Long produto = rst.getLong("produto_idproduto");
                 caracteristicaProduto.setProduto(produtoService.buscarPorId(produto));
                 
-                final Long cor = rst.getLong("cor_idcor");
-                caracteristicaProduto.setCor(corService.buscarPorId(cor));
+                final int cor = rst.getInt("cor_idcor");
+                caracteristicaProduto.setCor(corService.buscar(cor));
                 
                 caracteristicaProduto.setTamanho(rst.getString("tamanhoProduto"));
                 caracteristicaProduto.setBarra(rst.getString("barraProduto"));

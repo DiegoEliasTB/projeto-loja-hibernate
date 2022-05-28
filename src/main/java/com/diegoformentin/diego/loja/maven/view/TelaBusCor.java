@@ -1,7 +1,7 @@
 package com.diegoformentin.diego.loja.maven.view;
 
-public class TelaBusBairro extends javax.swing.JDialog {
-    public TelaBusBairro(java.awt.Frame parent, boolean modal) {
+public class TelaBusCor extends javax.swing.JDialog {
+    public TelaBusCor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -30,7 +30,7 @@ public class TelaBusBairro extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Titulo");
+        jLabel1.setText("Busca de cor do produto");
 
         javax.swing.GroupLayout jPanelTituloLayout = new javax.swing.GroupLayout(jPanelTitulo);
         jPanelTitulo.setLayout(jPanelTituloLayout);
@@ -80,7 +80,7 @@ public class TelaBusBairro extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Bairro"
+                "ID", "Cor"
             }
         ) {
             Class[] types = new Class [] {
@@ -118,7 +118,7 @@ public class TelaBusBairro extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaBusBairro dialog = new TelaBusBairro(new javax.swing.JFrame(), true);
+                TelaBusCor dialog = new TelaBusCor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

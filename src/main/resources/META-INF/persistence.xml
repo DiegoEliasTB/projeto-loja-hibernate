@@ -8,6 +8,7 @@
     <class>com.diegoformentin.diego.loja.maven.model.bo.Pessoa</class>
     <class>com.diegoformentin.diego.loja.maven.model.bo.Cliente</class>
     <class>com.diegoformentin.diego.loja.maven.model.bo.Fornecedor</class>
+    <class>com.diegoformentin.diego.loja.maven.model.bo.Cor</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bancoLoja?verifyServerCertificate=false&amp;useSSL=false&amp;requireSSL=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

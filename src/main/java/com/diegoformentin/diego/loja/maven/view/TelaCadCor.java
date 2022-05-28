@@ -12,12 +12,12 @@ import javax.swing.JTextField;
  *
  * @author house
  */
-public class TelaCadBairro extends javax.swing.JFrame {
+public class TelaCadCor extends javax.swing.JFrame {
 
     /**
      * Creates new form FormModeloCadastros
      */
-    public TelaCadBairro() {
+    public TelaCadCor() {
         initComponents();
     }
 
@@ -33,8 +33,8 @@ public class TelaCadBairro extends javax.swing.JFrame {
         jPanelTitulo = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jPanelDados = new javax.swing.JPanel();
-        jTFIdBairro = new javax.swing.JTextField();
-        jTFNomeBairro = new javax.swing.JTextField();
+        jTFIdCor = new javax.swing.JTextField();
+        jTFNomeCor = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanelBotoes = new javax.swing.JPanel();
@@ -55,7 +55,7 @@ public class TelaCadBairro extends javax.swing.JFrame {
         jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(51, 0, 153));
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Cadastro de bairro");
+        jLabelTitulo.setText("Cadastro de cor de produto");
 
         javax.swing.GroupLayout jPanelTituloLayout = new javax.swing.GroupLayout(jPanelTitulo);
         jPanelTitulo.setLayout(jPanelTituloLayout);
@@ -72,15 +72,15 @@ public class TelaCadBairro extends javax.swing.JFrame {
 
         jPanelDados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTFIdBairro.addActionListener(new java.awt.event.ActionListener() {
+        jTFIdCor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFIdBairroActionPerformed(evt);
+                jTFIdCorActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Código");
 
-        jLabel2.setText("Nome do bairro");
+        jLabel2.setText("Descrição");
 
         javax.swing.GroupLayout jPanelDadosLayout = new javax.swing.GroupLayout(jPanelDados);
         jPanelDados.setLayout(jPanelDadosLayout);
@@ -89,12 +89,12 @@ public class TelaCadBairro extends javax.swing.JFrame {
             .addGroup(jPanelDadosLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTFIdBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFIdCor, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(62, 62, 62)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTFNomeBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFNomeCor, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanelDadosLayout.setVerticalGroup(
@@ -106,8 +106,8 @@ public class TelaCadBairro extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFIdBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFNomeBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFIdCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTFNomeCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -155,9 +155,9 @@ public class TelaCadBairro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFIdBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFIdBairroActionPerformed
+    private void jTFIdCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFIdCorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTFIdBairroActionPerformed
+    }//GEN-LAST:event_jTFIdCorActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
         // TODO add your handling code here:
@@ -217,8 +217,8 @@ public class TelaCadBairro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDados;
     private javax.swing.JPanel jPanelTitulo;
-    private javax.swing.JTextField jTFIdBairro;
-    private javax.swing.JTextField jTFNomeBairro;
+    private javax.swing.JTextField jTFIdCor;
+    private javax.swing.JTextField jTFNomeCor;
     // End of variables declaration//GEN-END:variables
 
     public javax.swing.JButton getjButtonBuscar() {
@@ -241,23 +241,23 @@ public class TelaCadBairro extends javax.swing.JFrame {
         return jButtonSair;
     }
     
-    public void setjTFNomeCidade(JTextField jTFNomeBairro) {
-        this.jTFNomeBairro = jTFNomeBairro;
+    public void setjTFNomeCor(JTextField jTFNomeCor) {
+        this.jTFNomeCor = jTFNomeCor;
     }
     
-    public JTextField getjTFNomeBairro() {
-        return jTFNomeBairro;
+    public JTextField getjTFNomeCor() {
+        return this.jTFNomeCor;
     }
     
     public JPanel getjPanelDados() {
         return jPanelDados;
     }
     
-    public JTextField getjTFIdBairro() {
-        return jTFIdBairro;
+    public JTextField getjTFIdCor() {
+        return jTFIdCor;
     }
 
-    public void setjTFIdBairro(JTextField jTFIdBAirro) {
-        this.jTFIdBairro = jTFIdBAirro;
+    public void setjTFIdCor(JTextField jTFIdCor) {
+        this.jTFIdCor = jTFIdCor;
     }
 }

@@ -7,23 +7,27 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import com.diegoformentin.diego.loja.maven.model.bo.Bairro;
+import com.diegoformentin.diego.loja.maven.model.bo.Cor;
 import com.diegoformentin.diego.loja.maven.service.BairroService;
+import com.diegoformentin.diego.loja.maven.service.CorService;
 import com.diegoformentin.diego.loja.maven.view.TelaBusBairro;
+import com.diegoformentin.diego.loja.maven.view.TelaBusCor;
 import com.diegoformentin.diego.loja.maven.view.TelaCadBairro;
+import com.diegoformentin.diego.loja.maven.view.TelaCadCor;
 
-public class ControllerCadBairro implements ActionListener {
+public class ControllerCadCor implements ActionListener {
     
-    TelaCadBairro telaCadBairro;
+    TelaCadCor form;
     public static int codigo;
     
-    public ControllerCadBairro(TelaCadBairro telaCadBairro) {
-        this.telaCadBairro = telaCadBairro;
+    public ControllerCadCor(TelaCadCor telaCadCor) {
+        this.form = telaCadCor;
 
-        telaCadBairro.getjButtonBuscar().addActionListener(this);
-        telaCadBairro.getjButtonNovo().addActionListener(this);
-        telaCadBairro.getjButtonCancelar().addActionListener(this);
-        telaCadBairro.getjButtonGravar().addActionListener(this);
-        telaCadBairro.getjButtonSair().addActionListener(this);
+        form.getjButtonBuscar().addActionListener(this);
+        form.getjButtonNovo().addActionListener(this);
+        form.getjButtonCancelar().addActionListener(this);
+        form.getjButtonGravar().addActionListener(this);
+        form.getjButtonSair().addActionListener(this);
 
         ativa(true);
         ligaDesliga(false);
@@ -32,70 +36,74 @@ public class ControllerCadBairro implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent acao) {
-        if (acao.getSource() == telaCadBairro.getjButtonNovo()) {
+        if (acao.getSource() == form.getjButtonNovo()) {
             ativa(false);
             ligaDesliga(true);
-            this.telaCadBairro.getjTFIdBairro().setEnabled(false);
-        } else if (acao.getSource() == telaCadBairro.getjButtonCancelar()) {
+            this.form.getjTFIdCor().setEnabled(false);
+        } else if (acao.getSource() == form.getjButtonCancelar()) {
             ativa(true);
             ligaDesliga(false);
-        } else if (acao.getSource() == telaCadBairro.getjButtonGravar()) {
+        } else if (acao.getSource() == form.getjButtonGravar()) {
             
             //montar um objeto do tipo bairro
-            Bairro bairro = new Bairro();
-            bairro.setDescricaoBairro(this.telaCadBairro.getjTFNomeBairro().getText());
+            Cor cor = new Cor();
+            cor.setDescricao(this.form.getjTFNomeCor().getText());
             
             
             //acionar o service do bairro passando o objeto como parametro
-            BairroService bairroSevice = new BairroService();
+            CorService service = new CorService();
 
-            if (this.telaCadBairro.getjTFIdBairro().getText().trim().equalsIgnoreCase("")) {
-                bairroSevice.salvar(bairro);
+            if (this.form.getjTFIdCor().getText().trim().equalsIgnoreCase("")) {
+                service.salvar(cor);
             } else {
-                bairro.setIdBairro(Integer.parseInt(this.telaCadBairro.getjTFIdBairro().getText()));
-                bairroSevice.atualizar(bairro);
+                cor.setIdCor(Integer.valueOf(this.form.getjTFIdCor().getText()));
+                service.atualizar(cor);
             }
             //Setar o estado do formulário
             ativa(true);
             ligaDesliga(false);
-        } else if (acao.getSource() == telaCadBairro.getjButtonBuscar()) {
+        } else if (acao.getSource() == form.getjButtonBuscar()) {
             codigo = 0;
             //chamada da tela da busca
-            TelaBusBairro telaBusBairro = new TelaBusBairro(null, true);
-            ControllerBusBairro controllerBusBairro = new ControllerBusBairro(telaBusBairro);
-            telaBusBairro.setVisible(true);
+            TelaBusCor telaBusCor = new TelaBusCor(null, true);
+            ControllerBusCor controllerBusCor = new ControllerBusCor(telaBusCor);
+            telaBusCor.setVisible(true);
 
+            //codigo = 4;
             if (codigo != 0) {
-                Bairro bairro;
-                BairroService bairroService = new BairroService();
-                bairro = bairroService.buscar(codigo);
+                
+                System.out.println("How uaooo");
+                Cor cor;
+                CorService service = new CorService();
+                cor = service.buscar(codigo);
 
                 ativa(false);
                 ligaDesliga(true);
 
-                this.telaCadBairro.getjTFIdBairro().setText(bairro.getIdBairro() + "");
-                this.telaCadBairro.getjTFNomeBairro().setText(bairro.getDescricaoBairro());
+                this.form.getjTFIdCor().setText(cor.getIdCor() + "");
+                this.form.getjTFNomeCor().setText(cor.getDescricao());
 
-                this.telaCadBairro.getjTFIdBairro().setEnabled(false);
+                this.form.getjTFIdCor().setEnabled(false);
             }
-        } else if (acao.getSource() == telaCadBairro.getjButtonSair()) {
-            this.telaCadBairro.dispose();
+            
+        } else if (acao.getSource() == form.getjButtonSair()) {
+            this.form.dispose();
         }
     }
     
     //Método para habilitar/desabilitar botões(controle de estados)
     public void ativa(boolean estado) {
-        telaCadBairro.getjButtonNovo().setEnabled(estado);
-        telaCadBairro.getjButtonCancelar().setEnabled(!estado);
-        telaCadBairro.getjButtonGravar().setEnabled(!estado);
-        telaCadBairro.getjButtonBuscar().setEnabled(estado);
-        telaCadBairro.getjButtonSair().setEnabled(estado);
+        form.getjButtonNovo().setEnabled(estado);
+        form.getjButtonCancelar().setEnabled(!estado);
+        form.getjButtonGravar().setEnabled(!estado);
+        form.getjButtonBuscar().setEnabled(estado);
+        form.getjButtonSair().setEnabled(estado);
     }
 
     //Método para Ativação/Desativação/Limpeza ds 
     //Componentes do jPanelDados
     public void ligaDesliga(boolean estado) {
-        Component[] componentes = this.telaCadBairro.getjPanelDados().getComponents();
+        Component[] componentes = this.form.getjPanelDados().getComponents();
         for (Component componenteAtual : componentes) {
             if (componenteAtual instanceof JTextField) {
                 ((JTextField) componenteAtual).setText("");

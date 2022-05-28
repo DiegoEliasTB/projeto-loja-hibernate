@@ -67,7 +67,7 @@
               <Color blue="99" green="0" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Cadastro de bairro"/>
+            <Property name="text" type="java.lang.String" value="Cadastro de cor de produto"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -92,13 +92,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTFIdBairro" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="jTFIdCor" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTFNomeBairro" min="-2" pref="346" max="-2" attributes="0"/>
+                      <Component id="jTFNomeCor" min="-2" pref="346" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="69" max="32767" attributes="0"/>
               </Group>
@@ -114,8 +114,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFIdBairro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTFNomeBairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTFIdCor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTFNomeCor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
@@ -123,12 +123,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jTFIdBairro">
+        <Component class="javax.swing.JTextField" name="jTFIdCor">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFIdBairroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFIdCorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFNomeBairro">
+        <Component class="javax.swing.JTextField" name="jTFNomeCor">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="TelaCadBairro_jTFNomeBairro"/>
           </AuxValues>
@@ -140,7 +140,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome do bairro"/>
+            <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
           </Properties>
         </Component>
       </SubComponents>

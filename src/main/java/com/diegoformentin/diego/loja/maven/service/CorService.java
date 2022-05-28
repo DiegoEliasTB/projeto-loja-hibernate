@@ -1,19 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.diegoformentin.diego.loja.maven.service;
 
 import com.diegoformentin.diego.loja.maven.model.dao.CorDAO;
 import com.diegoformentin.diego.loja.maven.model.bo.Cor;
+import java.util.List;
 
-/**
- *
- * @author Diego
- */
-public class CorService {
-    public Cor buscarPorId(Long idCor) {
-        CorDAO dao = new CorDAO();
-        return dao.buscarPorId(idCor);
+public class CorService implements InterfaceService<Cor>{
+ 
+    @Override
+    public void salvar(Cor objeto) {
+        CorDAO.getInstance().create(objeto);
+    }
+
+    @Override
+    public List<Cor> buscar() {
+        return CorDAO.getInstance().retrieve();
+    }
+
+    @Override
+    public Cor buscar(int codigo) {
+        return CorDAO.getInstance().retrieve(codigo);
+    }
+
+    @Override
+    public Cor buscar(String descricao) {
+       return CorDAO.getInstance().retrieve(descricao);
+    }
+
+    @Override
+    public void atualizar(Cor objeto) {
+        CorDAO.getInstance().update(objeto);
+    }
+
+    @Override
+    public void apagar(Cor objeto) {
+        CorDAO.getInstance().delete(objeto);
     }
 }

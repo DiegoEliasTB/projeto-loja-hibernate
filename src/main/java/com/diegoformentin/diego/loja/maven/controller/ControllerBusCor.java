@@ -4,38 +4,42 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import com.diegoformentin.diego.loja.maven.model.bo.Bairro;
+import com.diegoformentin.diego.loja.maven.model.bo.Cor;
 import com.diegoformentin.diego.loja.maven.service.BairroService;
+import com.diegoformentin.diego.loja.maven.service.CorService;
 import com.diegoformentin.diego.loja.maven.view.TelaBusBairro;
+import com.diegoformentin.diego.loja.maven.view.TelaBusCor;
 
-public class ControllerBusBairro implements ActionListener {
+public class ControllerBusCor implements ActionListener {
 
-    TelaBusBairro telaBusBairro;
+    TelaBusCor form;
     
-    public ControllerBusBairro(TelaBusBairro telaBusBairro) {
-        this.telaBusBairro = telaBusBairro;
+    public ControllerBusCor(TelaBusCor tela) {
+        this.form = tela;
         
-        telaBusBairro.getjButtonCarregar().addActionListener(this);
-        telaBusBairro.getjButtonSair().addActionListener(this);
+        form.getjButtonCarregar().addActionListener(this);
+        form.getjButtonSair().addActionListener(this);
         
-        DefaultTableModel tabela = (DefaultTableModel) this.telaBusBairro.getjTable1().getModel();
+        DefaultTableModel tabela = (DefaultTableModel) this.form.getjTable1().getModel();
         
-        BairroService bairroService = new BairroService();        
-        for (Bairro bairroAtualDaLista : bairroService.buscar()) {
+        CorService service = new CorService();        
+        for (Cor it : service.buscar()) {
             tabela.addRow(new Object[]
-            { bairroAtualDaLista.getIdBairro(), 
-              bairroAtualDaLista.getDescricaoBairro()
+            { it.getIdCor(), 
+              it.getDescricao()
             });
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.telaBusBairro.getjButtonCarregar()){
-         ControllerCadBairro.codigo = 
-         (int)this.telaBusBairro.getjTable1().getValueAt(this.telaBusBairro.getjTable1().getSelectedRow(), 0);
-         this.telaBusBairro.dispose();
-        }else if(e.getSource() == this.telaBusBairro.getjButtonSair()){
-            this.telaBusBairro.dispose();
+        System.out.println("hmmmmmmm: " + (int)this.form.getjTable1().getValueAt(this.form.getjTable1().getSelectedRow(), 0));
+        if(e.getSource() == this.form.getjButtonCarregar()){
+         ControllerCadCor.codigo =
+         (int)this.form.getjTable1().getValueAt(this.form.getjTable1().getSelectedRow(), 0);
+         this.form.dispose();
+        }else if(e.getSource() == this.form.getjButtonSair()){
+            this.form.dispose();
         }
     }
     

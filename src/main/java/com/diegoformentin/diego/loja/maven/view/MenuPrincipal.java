@@ -8,6 +8,7 @@ package com.diegoformentin.diego.loja.maven.view;
 import com.diegoformentin.diego.loja.maven.controller.ControllerCadBairro;
 import com.diegoformentin.diego.loja.maven.controller.ControllerCadCidade;
 import com.diegoformentin.diego.loja.maven.controller.ControllerCadCliente;
+import com.diegoformentin.diego.loja.maven.controller.ControllerCadCor;
 import com.diegoformentin.diego.loja.maven.controller.ControllerCadEndereco;
 import com.diegoformentin.diego.loja.maven.controller.ControllerVendas;
 import javax.swing.JLabel;
@@ -46,6 +47,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -83,6 +85,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/New document.png"))); // NOI18N
+        jMenuItem7.setText("Cor");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/New document.png"))); // NOI18N
         jMenuItem5.setText("Endereço");
@@ -202,6 +213,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         telaVendas.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        TelaCadCor form = new TelaCadCor();
+        ControllerCadCor controller = new ControllerCadCor(form);
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     public JLabel getTotalCliente() {
         return jLTotalCliente;
     }
@@ -260,5 +277,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }

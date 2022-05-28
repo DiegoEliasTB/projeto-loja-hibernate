@@ -6,33 +6,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "condicaopagamento")
 public class Cor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCor;
+    private int idCor;
     
-    @Column
+    @Column(name = "descricaoCor")
     private String descricao;
 
     public Cor() {
 
     }
 
-    public Cor(Long idCor, String descricao) {
+    public Cor(int idCor, String descricao) {
         this.idCor = idCor;
         this.descricao = descricao;
     }
 
-    public Long getIdCor() {
+    public int getIdCor() {
         return idCor;
     }
 
-    public void setIdCor(Long idCor) {
+    public void setIdCor(int idCor) {
         this.idCor = idCor;
     }
 
