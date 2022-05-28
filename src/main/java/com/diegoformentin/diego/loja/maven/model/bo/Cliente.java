@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "cliente")
@@ -19,9 +17,7 @@ public class Cliente extends Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCliente;
     
-    
-    //@Temporal(TemporalType.DATE)
-    @Column
+    @Column(name = "dtNasCliente")
     private LocalDate dtNasc;
     
     @Column
@@ -39,7 +35,7 @@ public class Cliente extends Pessoa implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(int idClinete,LocalDate dtNasc, String cpfCliente, String rgCliente, String foneCliente, String fone2Cliente, String nome, String email, String compleEndereco, Endereco endereco) {
+    public Cliente(int idClinete, LocalDate dtNasc, String cpfCliente, String rgCliente, String foneCliente, String fone2Cliente, String nome, String email, String compleEndereco, Endereco endereco) {
         super(nome, email, compleEndereco, endereco);
         this.idCliente = idClinete;
         this.dtNasc = dtNasc;

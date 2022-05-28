@@ -5,20 +5,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
-//@MappedSuperclass
+@MappedSuperclass
 public abstract class Pessoa {
     
-    //@Column
+    @Column
     private String nome;
     
-    //@Column
+    @Column
     private String email;
     
-    //@Column
+    @Column
     private String compleEndereco;
     
-    //@Column
-    //@OneToOne @JoinColumn(name="endereco")
+    @OneToOne @JoinColumn(name="endereco")
     private Endereco endereco;
 
     public Pessoa() {
@@ -30,7 +29,6 @@ public abstract class Pessoa {
         this.compleEndereco = compleEndereco;
         this.endereco = endereco;
     }
-
     
     public String getNome() {
         return nome;
