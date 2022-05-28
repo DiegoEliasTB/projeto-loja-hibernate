@@ -3,11 +3,8 @@ package com.diegoformentin.diego.loja.maven.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.List;
 import com.diegoformentin.diego.loja.maven.model.bo.Cliente;
-import com.diegoformentin.diego.loja.maven.model.bo.Endereco;
-import com.diegoformentin.diego.loja.maven.service.EnderecoService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -47,37 +44,6 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
-        }
-    }
-    
-    public int buscaTotal() {
-         //Abrindo conexão
-        
-        String sqlExecutar = " SELECT COUNT(*) AS total from cliente ";
-
-        
-        Connection conexao     = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet rst          = null;
-        int total = 0;
-        
-        try{
-            pstm = conexao.prepareStatement(sqlExecutar);
-            rst = pstm.executeQuery();     
-            
-            while(rst.next()){
-                total = rst.getInt("total");
-            }
-            
-            
-            
-            
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return total;       
-        } catch(Exception ex){
-            ex.printStackTrace();
-            ConnectionFactory.closeConnection(conexao, pstm, rst);
-            return 0;
         }
     }
 
@@ -127,4 +93,31 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
         }
     }
     
+    public int buscaTotal() {
+         //Abrindo conexão
+        
+        String sqlExecutar = " SELECT COUNT(*) AS total from cliente ";
+
+        
+        Connection conexao     = ConnectionFactory.getConnection();
+        PreparedStatement pstm = null;
+        ResultSet rst          = null;
+        int total = 0;
+        
+        try{
+            pstm = conexao.prepareStatement(sqlExecutar);
+            rst = pstm.executeQuery();     
+            
+            while(rst.next()){
+                total = rst.getInt("total");
+            }
+            
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return total;       
+        } catch(Exception ex){
+            ex.printStackTrace();
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return 0;
+        }
+    }    
 }

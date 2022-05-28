@@ -17,7 +17,6 @@ public abstract class Pessoa {
     @Column
     private String compleEndereco;
     
-    //@Column
     @OneToOne @JoinColumn(name="endereco")
     private Endereco endereco;
 
@@ -30,7 +29,6 @@ public abstract class Pessoa {
         this.compleEndereco = compleEndereco;
         this.endereco = endereco;
     }
-
     
     public String getNome() {
         return nome;
