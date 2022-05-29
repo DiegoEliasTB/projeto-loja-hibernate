@@ -67,8 +67,9 @@ public class CorDAO implements InterfaceDAO<Cor>{
     @Override
     public void update(Cor objeto) {
         try {
+            Cor cor = em.find(objeto.getClass(), objeto.getIdCor());
             em.getTransaction().begin();
-            em.persist(objeto);
+            cor.setDescricao(objeto.getDescricao());
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

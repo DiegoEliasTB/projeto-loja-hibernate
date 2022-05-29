@@ -6,13 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
-import com.diegoformentin.diego.loja.maven.model.bo.Bairro;
 import com.diegoformentin.diego.loja.maven.model.bo.Cor;
-import com.diegoformentin.diego.loja.maven.service.BairroService;
 import com.diegoformentin.diego.loja.maven.service.CorService;
-import com.diegoformentin.diego.loja.maven.view.TelaBusBairro;
 import com.diegoformentin.diego.loja.maven.view.TelaBusCor;
-import com.diegoformentin.diego.loja.maven.view.TelaCadBairro;
 import com.diegoformentin.diego.loja.maven.view.TelaCadCor;
 
 public class ControllerCadCor implements ActionListener {
@@ -69,11 +65,8 @@ public class ControllerCadCor implements ActionListener {
             ControllerBusCor controllerBusCor = new ControllerBusCor(telaBusCor);
             telaBusCor.setVisible(true);
 
-            //codigo = 4;
             if (codigo != 0) {
-                
-                System.out.println("How uaooo");
-                Cor cor;
+                Cor cor = new Cor();
                 CorService service = new CorService();
                 cor = service.buscar(codigo);
 
