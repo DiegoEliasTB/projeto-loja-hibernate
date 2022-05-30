@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,7 +32,7 @@ public class Produto implements Serializable {
     //@Column(name = "marca_idmarca")
     //@OneToMany //@JoinColumn(name = "idmarca")
     //@JoinTable(name = "marca", joinColumns = {@JoinColumn(name = "idmarca")})
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "marca_idmarca")
     private Marca marca;
     
@@ -40,7 +41,7 @@ public class Produto implements Serializable {
     
     //@Column(name = "tamanho_idtamanho")
     //@OneToMany
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "tamanho_idtamanho")
     private Tamanho tamanho;
 

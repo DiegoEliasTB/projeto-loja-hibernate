@@ -50,14 +50,14 @@ public class ProdutoDAO {
         System.out.println("CodBarras: " + codBarras);
         
         String query = " SELECT p "
-//                + " p.idproduto,"
-//                + " p.descricaoProduto, "
-//                + " p.valProduto, "
-//                + " p.marca_idmarca, "
-//                + " p.tipoProduto_idtipoProduto, "
-//                + " p.tamanho_idtamanho "
-                + " FROM produto p "
-                + " LEFT JOIN caracteristicaProduto c "
+                //+ " p.idproduto,"
+                //+ " p.descricao, "
+                //+ " p.valor, "
+                //+ " p.marca, "
+                //+ " p.tipoProduto, "
+                //+ " p.tamanho "
+                + " FROM Produto p "
+                + " LEFT JOIN CaracteristicaProduto c "
                 + " on p.idProduto = c.produto "
                 + " WHERE c.barra = :codigoBarrasParam";
         
