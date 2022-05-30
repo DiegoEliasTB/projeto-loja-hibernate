@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -45,6 +46,9 @@ public class Produto implements Serializable {
     @JoinColumn (name = "tamanho_idtamanho")
     private Tamanho tamanho;
 
+//    @OneToOne(mappedBy = "CaracteristicaProduto")
+//    private CaracteristicaProduto caracteristicaProduto;
+    
     public Produto () {
 
     }

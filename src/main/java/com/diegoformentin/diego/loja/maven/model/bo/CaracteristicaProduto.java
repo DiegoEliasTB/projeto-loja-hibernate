@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,10 +22,8 @@ public class CaracteristicaProduto implements Serializable {
     private Long idCaracteristicaProduto;
     
     //@Column(name = "produto_idproduto")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-        @JoinColumn(name="idProduto", referencedColumnName="produto")
-    })
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="produto")//, referencedColumnName="caracteristicaProduto")
     private Produto produto;
     
     //@Column(name = "cor_idcor")
