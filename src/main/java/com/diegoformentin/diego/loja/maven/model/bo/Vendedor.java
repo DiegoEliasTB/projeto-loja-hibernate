@@ -1,14 +1,32 @@
 package com.diegoformentin.diego.loja.maven.model.bo;
 
 import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Vendedor extends Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVendedor;
+    
+    @Column
     private String cpf;
+    
+    @Column
     private String telefone1;
+    
+    @Column
     private String telefone2;
+    
+    @Column
     private BigDecimal percentualComissao;
+    
+    @Column
     private BigDecimal percentualRecebido;
 
     public Vendedor() {

@@ -1,8 +1,22 @@
 package com.diegoformentin.diego.loja.maven.model.bo;
 
-public class Tamanho {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tamanho")
+public class Tamanho implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTamanho;
+    
+    @Column(name = "descricaoTamanho")
     private String descricao;
 
     public Tamanho () {

@@ -1,33 +1,47 @@
 package com.diegoformentin.diego.loja.maven.model.bo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-public class Produto {
+@Entity
+@Table(name = "produto")
+public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduto;
     
-    @Column
+    @Column(name = "descricaoProduto")
     private String descricao;
     
-    @Column
+    @Column(name = "valProduto")
     private BigDecimal valor;
     
-    @Column
-    @OneToMany
+    //@Column(name = "marca_idmarca")
+    //@OneToMany //@JoinColumn(name = "idmarca")
+    //@JoinTable(name = "marca", joinColumns = {@JoinColumn(name = "idmarca")})
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "marca_idmarca")
     private Marca marca;
     
-    @Column
+    @Column(name = "tipoProduto_idtipoProduto")
     private TipoProduto tipoProduto;
     
-    @Column
-    @OneToMany
+    //@Column(name = "tamanho_idtamanho")
+    //@OneToMany
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "tamanho_idtamanho")
     private Tamanho tamanho;
 
     public Produto () {

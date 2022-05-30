@@ -24,11 +24,9 @@ public class CondicaoPagamento implements Serializable {
     private String descricao;
     
     @Column
-    @Temporal(TemporalType.DATE)
     private LocalDate diasAtePrimeiraParcela;
     
     @Column
-    @Temporal(TemporalType.DATE)
     private LocalDate diasEntreParcelas;
 
     public CondicaoPagamento () {

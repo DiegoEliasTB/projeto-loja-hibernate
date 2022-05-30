@@ -10,27 +10,27 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "caracteristicaProduto")
+@Table(name = "caracteristicaproduto")
 public class CaracteristicaProduto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCaracteristicaProduto;
     
-    @Column
+    //@Column(name = "produto_idproduto")
     @OneToOne
     private Produto produto;
     
-    @Column
+    //@Column(name = "cor_idcor")
     @OneToOne
     private Cor cor;
     
-    @Column
+    @Column(name = "tamanhoProduto")
     private String tamanho;
     
-    @Column
+    @Column(name = "barraProduto")
     private String barra;
     
-    @Column
+    @Column(name = "qtdEstoqueProduto")
     private Long quantidadeEstoque;
 
     public CaracteristicaProduto () {

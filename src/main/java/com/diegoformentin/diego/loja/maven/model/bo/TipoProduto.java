@@ -1,8 +1,22 @@
 package com.diegoformentin.diego.loja.maven.model.bo;
 
-public class TipoProduto {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tipoproduto")
+public class TipoProduto implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTipoProduto;
+    
+    @Column(name = "descricaoTipoProduto")
     private String descricao;
 
     public  TipoProduto () {

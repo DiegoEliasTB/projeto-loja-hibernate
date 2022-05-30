@@ -1,19 +1,51 @@
 package com.diegoformentin.diego.loja.maven.model.bo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-public class Venda {
+@Entity
+public class Venda implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVenda;
+    
+    @Column
     private String serie;
+    
+    @Column
     private LocalDate dataVenda;
+    
+    @Column
     private String hora;
+    
+    @Column
     private BigDecimal desconto;
+    
+    @Column
     private BigDecimal total;
+    
+    //@Column
+    @ManyToOne @JoinColumn(name = "Cliente")
     private Cliente cliente;
+    
+    //@Column
+    @ManyToOne @JoinColumn(name = "condicaopagamento")
     private CondicaoPagamento condicaoPagamento;
+    
+    @Column
     private Long diaVencimentoParcela;
+    
+    //@Column
+    @ManyToOne @JoinColumn(name = "vendedor")
     private Vendedor vendedor;
 
     public Venda() {
