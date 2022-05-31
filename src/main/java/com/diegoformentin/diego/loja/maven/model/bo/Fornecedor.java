@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@AttributeOverride(name = "nome", column = @Column(name="nomeFantasiaForncedor"))
-@AttributeOverride(name = "email", column = @Column(name="emailFornecedor"))
-@AttributeOverride(name = "compleEndereco", column = @Column(name="compleEnderecoFornecedor"))
+@Table(name = "fornecedor")
+//@AttributeOverride(name = "nome", column = @Column(name="nomeFantasiaForncedor"))
+//@AttributeOverride(name = "email", column = @Column(name="emailFornecedor"))
+//@AttributeOverride(name = "compleEndereco", column = @Column(name="compleEnderecoFornecedor"))
 public class Fornecedor extends Pessoa implements Serializable {
 
     @Id

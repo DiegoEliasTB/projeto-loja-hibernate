@@ -15,19 +15,21 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "caracteristicaproduto")
+@Table(name = "caracteristicaProduto")
 public class CaracteristicaProduto implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idCaracterisitcaProduto")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCaracteristicaProduto;
     
     //@Column(name = "produto_idproduto")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="produto")//, referencedColumnName="caracteristicaProduto")
+    @JoinColumn(name="produto_idproduto")//, referencedColumnName="caracteristicaProduto")
     private Produto produto;
     
     //@Column(name = "cor_idcor")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cor_idcor")
     private Cor cor;
     
     @Column(name = "tamanhoProduto")

@@ -16,4 +16,9 @@ public class CaracteristicaProdutoService {
         CaracteristicaProdutoDAO dao = new CaracteristicaProdutoDAO();
         return dao.buscarPorId(idCaracteristicaProduto);
     }
+    
+    public CaracteristicaProduto buscarPorCodigoBarras(String codBarras) {
+        CaracteristicaProdutoDAO dao = new CaracteristicaProdutoDAO();
+        return dao.buscarPorCodigoBarras(codBarras);
+    }
 }

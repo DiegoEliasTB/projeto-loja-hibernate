@@ -6,27 +6,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "vendedor")
 public class Vendedor extends Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVendedor;
     
-    @Column
+    @Column(name = "cpfVendedor")
     private String cpf;
     
-    @Column
+    @Column(name = "foneVendedor")
     private String telefone1;
     
-    @Column
+    @Column(name = "fone2Vendedor")
     private String telefone2;
     
-    @Column
+    @Column(name = "percentComissaoVenda")
     private BigDecimal percentualComissao;
     
-    @Column
+    @Column(name = "percentComissaoRecebto")
     private BigDecimal percentualRecebido;
 
     public Vendedor() {

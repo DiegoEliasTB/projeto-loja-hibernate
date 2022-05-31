@@ -1,5 +1,6 @@
 package com.diegoformentin.diego.loja.maven.controller;
 
+import com.diegoformentin.diego.loja.maven.model.bo.CaracteristicaProduto;
 import com.diegoformentin.diego.loja.maven.model.bo.Cliente;
 import com.diegoformentin.diego.loja.maven.model.bo.CondicaoPagamento;
 import com.diegoformentin.diego.loja.maven.model.bo.Produto;
@@ -24,6 +25,7 @@ public class ControllerVendas implements ActionListener {
     
     TelaVendas telaVendas;
     ProdutoService service = new ProdutoService();
+    CaracteristicaProdutoService serviceCp = new CaracteristicaProdutoService();
     ClienteService clienteService = new ClienteService();
     CondicaoPagamentoService condicaoPagamentoService = new CondicaoPagamentoService();
     VendedorService vendedorService = new VendedorService();
@@ -61,15 +63,17 @@ public class ControllerVendas implements ActionListener {
                     
                     String codigoBarras = campo.substring(2,15);
                     
-                    Produto produto = service.buscarPorCodigoBarras(codigoBarras);
+                    CaracteristicaProduto cp = serviceCp.buscarPorCodigoBarras(codigoBarras);
                     
-                    idProduto = produto.getIdProduto();
+                    //Produto produto = service.buscarPorCodigoBarras(codigoBarras);
                     
-                    nomeProduto = produto.getDescricao();
+                    idProduto = cp.getProduto().getIdProduto();
+                    
+                    nomeProduto = cp.getProduto().getDescricao();
                     
                     qtdItens = Long.valueOf(campo.substring(0,1));
                     
-                    valorProduto = produto.getValor();
+                    valorProduto = cp.getProduto().getValor();
 
                     subTotal = valorProduto.multiply(BigDecimal.valueOf(qtdItens));
                         

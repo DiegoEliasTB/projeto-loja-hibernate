@@ -13,20 +13,20 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "condicaopagamento")
+@Table(name = "condicaoPagamento")
 public class CondicaoPagamento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCondicaoPagamento;
     
-    @Column
+    @Column(name = "descricaoCondicaoPagamento")
     private String descricao;
     
-    @Column
+    @Column(name = "numDiasAtePrimeiraParcela")
     private LocalDate diasAtePrimeiraParcela;
     
-    @Column
+    @Column(name = "numDiasEntreParcelas")
     private LocalDate diasEntreParcelas;
 
     public CondicaoPagamento () {

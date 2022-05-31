@@ -21,7 +21,8 @@ import javax.persistence.Table;
 public class Produto implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idproduto")
     private Long idProduto;
     
     @Column(name = "descricaoProduto")
@@ -33,16 +34,17 @@ public class Produto implements Serializable {
     //@Column(name = "marca_idmarca")
     //@OneToMany //@JoinColumn(name = "idmarca")
     //@JoinTable(name = "marca", joinColumns = {@JoinColumn(name = "idmarca")})
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "marca_idmarca")
     private Marca marca;
     
-    @Column(name = "tipoProduto_idtipoProduto")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipoProduto_idtipoProduto")
     private TipoProduto tipoProduto;
     
     //@Column(name = "tamanho_idtamanho")
     //@OneToMany
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "tamanho_idtamanho")
     private Tamanho tamanho;
 
