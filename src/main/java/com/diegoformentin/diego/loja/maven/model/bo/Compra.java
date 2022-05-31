@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,31 +20,33 @@ import javax.persistence.TemporalType;
 public class Compra implements Serializable {
 
     @Id
+    @JoinColumn (name = "idcompra")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCompra;
     
-    @Column
-    @OneToMany
+    //@Column
+    @OneToOne
+    @JoinColumn (name = "fornecedor_idfornecedor")
     private Fornecedor fornecedor;
     
-    @Column
-    @OneToMany
+    //@Column
+    @OneToOne
+    @JoinColumn (name = "condicaoPagamento_idcondicaoPagamento")
     private CondicaoPagamento condicaoPagamento;
     
-    @Column
+    @JoinColumn (name = "numNFCompra")
     private Long numeroNota;
     
-    @Column
+    @JoinColumn (name = "serieNFCompra")
     private String serieNota;
     
-    @Column
-    @Temporal(TemporalType.DATE)
+    @JoinColumn (name = "dtHrCompra")
     private LocalDate dataCompra;
     
-    @Column
+    @JoinColumn (name = "descontoCompra")
     private BigDecimal desconto;
     
-    @Column
+    @JoinColumn (name = "valorTotalCompra")
     private BigDecimal total;
 
     public Compra() {

@@ -17,16 +17,17 @@ import javax.persistence.Table;
 public class Fornecedor extends Pessoa implements Serializable {
 
     @Id
+    @Column(name = "idfornecedor")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFornecedor;
     
-    @Column
+    @Column(name = "razaoSocialFornecedor")
     private String razaoSocialFornecedor;
     
-    @Column
+    @Column(name = "cnpjFornecedor")
     private String cnpjFornecedor;
     
-    @Column
+    @Column(name = "inscEstadualFornecedor")
     private String inscEstadualFornecedor;
 
     public Fornecedor() {
