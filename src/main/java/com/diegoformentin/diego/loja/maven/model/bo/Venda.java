@@ -18,34 +18,34 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVenda;
     
-    @Column
+    @Column(name = "serieVenda")
     private String serie;
     
-    @Column
+    @Column(name = "dtVenda")
     private LocalDate dataVenda;
     
-    @Column
+    @Column(name = "hrVenda")
     private String hora;
     
-    @Column
+    @Column(name = "valDescontoVenda")
     private BigDecimal desconto;
     
-    @Column
+    @Column(name = "valTotalVenda")
     private BigDecimal total;
     
     //@Column
-    @ManyToOne @JoinColumn(name = "Cliente")
+    @ManyToOne @JoinColumn(name = "cliente_idcliente")
     private Cliente cliente;
     
     //@Column
-    @ManyToOne @JoinColumn(name = "condicaopagamento")
+    @ManyToOne @JoinColumn(name = "condicaoPagamento_idcondicaoPAgamento")
     private CondicaoPagamento condicaoPagamento;
     
-    @Column
+    @Column(name = "diaVencimentoParcela")
     private Long diaVencimentoParcela;
     
     //@Column
-    @ManyToOne @JoinColumn(name = "vendedor")
+    @ManyToOne @JoinColumn(name = "vendedor_idvendedor")
     private Vendedor vendedor;
 
     public Venda() {
