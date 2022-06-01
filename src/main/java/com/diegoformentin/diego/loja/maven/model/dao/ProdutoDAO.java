@@ -1,21 +1,10 @@
 package com.diegoformentin.diego.loja.maven.model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import com.diegoformentin.diego.loja.maven.model.bo.Produto;
-import com.diegoformentin.diego.loja.maven.service.MarcaService;
-import com.diegoformentin.diego.loja.maven.service.TamanhoService;
-import com.diegoformentin.diego.loja.maven.service.TipoProdutoService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
-/**
- *
- * @author Diego
- */
 public class ProdutoDAO {
  
     private static ProdutoDAO instance;
@@ -50,12 +39,6 @@ public class ProdutoDAO {
         System.out.println("CodBarras: " + codBarras);
         
         String query = " SELECT p "
-                //+ " p.idproduto,"
-                //+ " p.descricao, "
-                //+ " p.valor, "
-                //+ " p.marca, "
-                //+ " p.tipoProduto, "
-                //+ " p.tamanho "
                 + " FROM Produto p "
                 + " LEFT JOIN CaracteristicaProduto c "
                 + " on p.idProduto = c.produto "

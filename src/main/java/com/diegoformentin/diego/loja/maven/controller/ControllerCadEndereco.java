@@ -11,7 +11,6 @@ import com.diegoformentin.diego.loja.maven.model.bo.Cidade;
 import com.diegoformentin.diego.loja.maven.model.bo.Endereco;
 import com.diegoformentin.diego.loja.maven.service.CidadeService;
 import com.diegoformentin.diego.loja.maven.service.EnderecoService;
-import com.diegoformentin.diego.loja.maven.view.TelaBusCidade;
 import com.diegoformentin.diego.loja.maven.view.TelaBusEndereco;
 import com.diegoformentin.diego.loja.maven.view.TelaCadEndereco;
 

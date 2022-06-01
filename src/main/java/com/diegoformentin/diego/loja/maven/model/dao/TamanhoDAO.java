@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 
 import com.diegoformentin.diego.loja.maven.model.bo.Tamanho;
 
-/**
- *
- * @author Diego
- */
 public class TamanhoDAO {
     public Tamanho buscarPorId(Long idTamanho) {
         String sqlExecutar     =   " SELECT idtamanho, "

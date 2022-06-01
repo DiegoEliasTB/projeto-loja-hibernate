@@ -5,11 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import com.diegoformentin.diego.loja.maven.model.bo.Cidade;
 import com.diegoformentin.diego.loja.maven.service.CidadeService;
-import com.diegoformentin.diego.loja.maven.view.ModeloCadastros;
 import com.diegoformentin.diego.loja.maven.view.TelaBusCidade;
 import com.diegoformentin.diego.loja.maven.view.TelaCadCidade;
 

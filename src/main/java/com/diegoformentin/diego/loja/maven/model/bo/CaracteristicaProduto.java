@@ -4,12 +4,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,15 +15,12 @@ import javax.persistence.Table;
 public class CaracteristicaProduto implements Serializable {
     @Id
     @Column(name = "idCaracterisitcaProduto")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCaracteristicaProduto;
     
-    //@Column(name = "produto_idproduto")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="produto_idproduto")//, referencedColumnName="caracteristicaProduto")
+    @JoinColumn(name="produto_idproduto")
     private Produto produto;
     
-    //@Column(name = "cor_idcor")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cor_idcor")
     private Cor cor;

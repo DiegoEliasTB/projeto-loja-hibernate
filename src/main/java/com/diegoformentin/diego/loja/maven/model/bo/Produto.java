@@ -5,14 +5,8 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,7 +15,6 @@ import javax.persistence.Table;
 public class Produto implements Serializable {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idproduto")
     private Long idProduto;
     
@@ -31,9 +24,6 @@ public class Produto implements Serializable {
     @Column(name = "valProduto")
     private BigDecimal valor;
     
-    //@Column(name = "marca_idmarca")
-    //@OneToMany //@JoinColumn(name = "idmarca")
-    //@JoinTable(name = "marca", joinColumns = {@JoinColumn(name = "idmarca")})
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "marca_idmarca")
     private Marca marca;
@@ -42,14 +32,9 @@ public class Produto implements Serializable {
     @JoinColumn(name = "tipoProduto_idtipoProduto")
     private TipoProduto tipoProduto;
     
-    //@Column(name = "tamanho_idtamanho")
-    //@OneToMany
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "tamanho_idtamanho")
     private Tamanho tamanho;
-
-//    @OneToOne(mappedBy = "CaracteristicaProduto")
-//    private CaracteristicaProduto caracteristicaProduto;
     
     public Produto () {
 

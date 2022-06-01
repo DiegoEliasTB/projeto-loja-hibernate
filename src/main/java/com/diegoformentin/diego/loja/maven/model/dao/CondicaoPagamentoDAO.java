@@ -5,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import com.diegoformentin.diego.loja.maven.model.bo.CondicaoPagamento;
 
-/**
- *
- * @author Diego
- */
 public class CondicaoPagamentoDAO {
     public CondicaoPagamento buscarPorId(Long idCondicaoPagamento) {
         String sqlExecutar     =   " SELECT idcondicaoPagamento, "

@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 
 import com.diegoformentin.diego.loja.maven.model.bo.TipoProduto;
 
-/**
- *
- * @author Diego
- */
 public class TipoProdutoDAO {
     public TipoProduto buscarPorId(Long idTipoProduto) {
         String sqlExecutar     =   " SELECT idtipoProduto, "

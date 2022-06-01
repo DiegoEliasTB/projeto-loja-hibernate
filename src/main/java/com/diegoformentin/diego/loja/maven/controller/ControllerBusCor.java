@@ -3,11 +3,8 @@ package com.diegoformentin.diego.loja.maven.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
-import com.diegoformentin.diego.loja.maven.model.bo.Bairro;
 import com.diegoformentin.diego.loja.maven.model.bo.Cor;
-import com.diegoformentin.diego.loja.maven.service.BairroService;
 import com.diegoformentin.diego.loja.maven.service.CorService;
-import com.diegoformentin.diego.loja.maven.view.TelaBusBairro;
 import com.diegoformentin.diego.loja.maven.view.TelaBusCor;
 
 public class ControllerBusCor implements ActionListener {

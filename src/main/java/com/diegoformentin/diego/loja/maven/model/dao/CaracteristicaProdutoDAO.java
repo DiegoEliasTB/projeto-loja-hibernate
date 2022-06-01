@@ -1,20 +1,10 @@
 package com.diegoformentin.diego.loja.maven.model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import com.diegoformentin.diego.loja.maven.model.bo.CaracteristicaProduto;
-import com.diegoformentin.diego.loja.maven.model.bo.Produto;
-import com.diegoformentin.diego.loja.maven.service.CorService;
-import com.diegoformentin.diego.loja.maven.service.ProdutoService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author Diego
- */
 public class CaracteristicaProdutoDAO {
  
     private static CaracteristicaProdutoDAO instance;

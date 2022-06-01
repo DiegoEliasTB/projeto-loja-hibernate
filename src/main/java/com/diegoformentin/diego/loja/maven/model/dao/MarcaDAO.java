@@ -5,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import com.diegoformentin.diego.loja.maven.model.bo.Marca;
 
-/**
- *
- * @author Diego
- */
 public class MarcaDAO {
     public Marca buscarPorId(Long idMarca) {
         String sqlExecutar     =   " SELECT idmarca, "
