@@ -67,8 +67,9 @@ public class BairroDAO implements InterfaceDAO<Bairro>{
     @Override
     public void update(Bairro objeto) {
         try {
+            Bairro bairro = em.find(objeto.getClass(), objeto.getIdBairro());
             em.getTransaction().begin();
-            em.persist(objeto);
+            bairro.setDescricaoBairro(objeto.getDescricaoBairro());
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

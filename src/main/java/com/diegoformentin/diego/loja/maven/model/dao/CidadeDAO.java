@@ -64,13 +64,12 @@ public class CidadeDAO implements InterfaceDAO<Cidade>{
     @Override
     public void update(Cidade objeto) {
         try {
+            Cidade cidade = entityManager.find(objeto.getClass(), objeto.getIdCidade());
             entityManager.getTransaction().begin();
-            entityManager.persist(objeto);
+            cidade.setDescricaoCidade(objeto.getDescricaoCidade());
             entityManager.getTransaction().commit();
-            
-        } catch (Exception ex) {
-            
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }

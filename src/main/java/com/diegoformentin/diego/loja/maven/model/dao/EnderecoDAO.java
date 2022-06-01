@@ -68,13 +68,25 @@ public class EnderecoDAO implements InterfaceDAO<Endereco> {
     @Override
     public void update(Endereco objeto) {
         try {
+            Endereco endereco = em.find(objeto.getClass(), objeto.getIdCep());
             em.getTransaction().begin();
-            em.persist(objeto);
+            endereco.setLogradouroCep(objeto.getLogradouroCep());
+            endereco.setCepCep(objeto.getCepCep());
+            endereco.setCidade(objeto.getCidade());
+            endereco.setBairro(objeto.getBairro());
             em.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
         }
+//        try {
+//            em.getTransaction().begin();
+//            em.persist(objeto);
+//            em.getTransaction().commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            em.getTransaction().rollback();
+//        }
     }
 
     @Override

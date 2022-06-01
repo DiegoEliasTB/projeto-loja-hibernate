@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "caracteristicaProduto")
+@Table(name = "caracteristicaproduto")
 public class CaracteristicaProduto implements Serializable {
     @Id
     @Column(name = "idCaracterisitcaProduto")
